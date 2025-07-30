@@ -6,7 +6,7 @@ def aprendices(request):
     lista_aprendices = Aprendiz.objects.all().order_by('nombre', 'apellido')
     template = loader.get_template('lista_aprendices.html')
     context = {
-        'lista-aprendices' :lista_aprendices,
+        'lista_aprendices' :lista_aprendices,
         'total_aprendices': lista_aprendices.count(),
     }
     return HttpResponse(template.render(context, request))

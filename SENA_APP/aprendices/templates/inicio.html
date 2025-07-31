@@ -11,10 +11,14 @@
     <div class="card-img-overlay">
         <h1 class="card-title display-4">Bienvenido a SENA APP</h1>
         <p class="card-text lead">
-            Aquí puedes consultar la información de los aprendices  y instructores que se encuentran en el SENA.
+            Aquí puedes consultar la información de los aprendices  y instructores que se encuentran en el SENA. <br>
+            Ademas encuentras todos los programas que existen en el SENA.
         </p>
-        <a href="{%url 'aprendices:lista_aprendices'%}" class="btn btn-primary mt-3">Ir a Aprendices</a>
-        <a href="{%url 'instructores:lista_instructores'%}" class="btn btn-primary mt-3">Ir a Instructores</a>
+                <div class="d-flex gap-3 mt-4">
+            <a href="{% url 'aprendices:lista_aprendices' %}" class="btn btn-primary">Ir a Aprendices</a>
+            <a href="{% url 'instructores:lista_instructores' %}" class="btn btn-primary">Ir a Instructores</a>
+            <a href="{% url 'programas:lista_programas' %}" class="btn btn-primary">Ir a Programas</a>
+        </div>
     </div>
 </div>
 

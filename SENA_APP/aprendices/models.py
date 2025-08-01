@@ -9,7 +9,7 @@ class Aprendiz(models.Model):
     correo = models.EmailField(null=True)
     fecha_nacimiento = models.DateField(unique=True)
     ciudad = models.CharField(max_length=100, null=True)
-    programa = models.CharField(max_length=100)
+    #programa = models.CharField(max_length=100)
     
     def __str__(self):
         return f"{self.nombre} {self.apellido} - {self.documento_identidad}"

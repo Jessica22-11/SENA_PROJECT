@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Lista de Cursos SENA - SENA APP{% endblock %}
+
+{% block content %}
+<div class="row mb-4 content-header">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>Lista de Cursos SENA </h2>
+            <div>
+                <span class="total">Total: {{ total_cursos }} Cursos</span>
+                <a href="{% url 'admin:aprendices_curso_add' %}" class="btn btn-custom-primary ms-2">
+                    <i class="fas fa-plus-circle me-1"></i> Nuevo Curso
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% if lista_cursos %}
+<div class="row">
+    {% for curso in lista_cursos %}
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card card-aprendiz h-100">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ curso.nombre }}</h5>
+                <h6 class="card-subtitle mb-3 text-muted">{{ curso.codigo }}</h6>
+                <h6 class="card-subtitle mb-3 text-muted">{{ curso.programa }}</h6>
+                <hr>
+                <ul class="list-group list-group-flush flex-grow-1">
+                    <li class="list-group-item">
+                        <strong>Instructor:</strong> {{ curso.instructor_coordinador }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Fecha Inicio:</strong>{{ curso.fecha_inicio|date:"d/m/Y" }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Fecha Finalización:</strong> {{ curso.fecha_fin|date:"d/m/Y"  }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Horario:</strong> {{ curso.horario }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Estado:</strong> {{ curso.estado }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Observaciones:</strong> {{ curso.observaciones }}
+                    </li>
+                </ul>
+                <a href="{% url 'admin:aprendices_curso_change' programa.pk %}" 
+                    class="btn btn-sm btn-custom-secondary mt-auto">
+                    Editar Programa
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% else %}
+
+<div class="row">
+    <div class="col-12">
+        <div class="alert alert-custom" role="alert">
+            <h4 class="alert-heading">No hay Cursos registrados</h4>
+            <p>Aún no se han registrado Cursos en el sistema.</p>
+            <hr>
+            <p class="mb-0">
+                <a href="{% url 'admin:aprendices_curso_add' %}" class="btn btn-custom-primary">
+                    Registrar Primer Curso
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

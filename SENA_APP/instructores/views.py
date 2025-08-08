@@ -14,7 +14,7 @@ def instructores(request):
     return HttpResponse(template.render(context, request))
 
 def detalle_instructor(request, instructor_id):
-    instructor = get_object_or_404(Instructor,id=instructor_id)
+    instructor = get_object_or_404(Instructor, id=instructor_id)
     cursos_coordinados = instructor.cursos_coordinados.all()
     cursos_impartidos = instructor.cursos_impartidos.all()
     template = loader.get_template('detalle_instructor.html')

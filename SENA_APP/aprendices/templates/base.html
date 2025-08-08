@@ -310,17 +310,146 @@
     }
 
     .btn-sena-outline {
-        border: 1px solid #8B4513; /* Borde marrón */
-        color: #fcf6f2ff; /* Texto marrón */
+        border: 1px solid #8B4513;
+        color: #fcf6f2ff; 
         background-color: #8B4513;
         font-weight: 500;
         transition: all 0.3s ease;
     }
 
 .btn-sena-outline:hover {
-    background-color: #e46912ff; /* Fondo marrón al pasar el ratón */
-    color: #ffffff; /* Texto blanco */
+    background-color: #e46912ff; 
+    color: #ffffff; 
 }
+/*Estilos detalle_aprendiz*/
+:root {
+        --primary-color: #E67E22;
+        --secondary-color: #6E4C2B;
+        --background-color: #f8f9fa;
+        --card-bg-color: #FFFFFF;
+        --text-color: #343a40;
+        --text-muted-color: #6c757d;
+        --border-color: #dee2e6;
+    }
+    .details-card {
+        background-color: var(--card-bg-color);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        margin-top: 20px;
+        overflow: hidden;
+    }
+
+    .details-card-header {
+        background-color: var(--primary-color);
+        color: var(--card-bg-color);
+        padding: 20px;
+        border-bottom: 2px solid var(--secondary-color);
+    }
+
+    .details-card-header h2 {
+        margin: 0;
+        font-weight: 600;
+    }
+
+    .details-card-body {
+        padding: 30px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    .profile-section {
+        flex: 1;
+        min-width: 200px;
+        text-align: center;
+    }
+
+    .profile-avatar {
+        width: 150px;
+        height: 150px;
+        background-color: var(--secondary-color);
+        color: var(--card-bg-color);
+        font-size: 60px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+        border: 4px solid var(--card-bg-color);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-section h4 {
+        color: var(--text-color);
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .info-section {
+        flex: 2;
+        min-width: 300px;
+    }
+
+    .info-group {
+        margin-bottom: 25px;
+    }
+
+    .info-group h5 {
+        font-weight: 700;
+        color: var(--secondary-color);
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid var(--primary-color);
+        display: inline-block;
+    }
+
+    .info-item {
+        display: flex;
+        margin-bottom: 12px;
+        font-size: 16px;
+    }
+
+    .info-item strong {
+        color: var(--text-color);
+        width: 180px;
+    }
+
+    .info-item span {
+        color: var(--text-muted-color);
+    }
+
+    .info-item a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+    .info-item a:hover {
+        text-decoration: underline;
+    }
+
+    .actions {
+        padding: 20px 30px;
+        background-color: var(--background-color);
+        border-top: 1px solid var(--border-color);
+        text-align: right;
+    }
+
+    .btn-edit {
+        background-color: var(--secondary-color);
+        color: white;
+        font-weight: 600;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .btn-edit:hover {
+        background-color: #5a3d20;
+    }
     </style>
 </head>
     <body>

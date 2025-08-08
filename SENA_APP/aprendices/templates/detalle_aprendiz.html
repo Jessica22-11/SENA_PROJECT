@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalles Aprendiz - SENA APP{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/" class="back-link">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'aprendices:lista_aprendices' %}" class="back-link">Lista de Aprendices</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ aprendiz.nombre_completo }}</li>
+        </ol>
+    </nav>
+
+    <div class="details-card">
+        <div class="details-card-header">
+            <h2>Perfil del Aprendiz</h2>
+        </div>
+        <div class="details-card-body">
+            <div class="profile-section">
+                <div class="profile-avatar">
+                    {{ aprendiz.nombre.0 }}{{ aprendiz.apellido.0 }}
+                </div>
+                <h4>{{ aprendiz.nombre_completo }}</h4>
+            </div>
+
+            <div class="info-section">
+                <div class="info-group">
+                    <h5>Información Personal</h5>
+                    <div class="info-item">
+                        <strong>Documento:</strong>
+                        <span>{{ aprendiz.documento_identidad }}</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Nombre:</strong>
+                        <span>{{ aprendiz.nombre }}</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Apellido:</strong>
+                        <span>{{ aprendiz.apellido }}</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Fecha de Nacimiento:</strong>
+                        <span>{{ aprendiz.fecha_nacimiento|date:"d/m/Y" }}</span>
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <h5>Información de Contacto</h5>
+                    <div class="info-item">
+                        <strong>Correo Electrónico:</strong>
+                        <span><a href="mailto:{{ aprendiz.correo }}">{{ aprendiz.correo }}</a></span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Teléfono:</strong>
+                        <span>{{ aprendiz.telefono }}</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Ciudad:</strong>
+                        <span>{{ aprendiz.ciudad }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="actions">
+            <a href="#" class="btn btn-edit">Editar Aprendiz</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

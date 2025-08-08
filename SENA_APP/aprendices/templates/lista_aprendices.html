@@ -23,12 +23,12 @@
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card card-aprendiz h-100">
             <div class="card-body d-flex flex-column">
-                <h5 class="card-title">{{ aprendiz.nombre }} {{ aprendiz.apellido }}</h5>
+                <h5 class="card-title"><a href= "aprendiz/{{ aprendiz.id}}">{{ aprendiz.nombre }} {{ aprendiz.apellido }}</a></h5>
                 <h6 class="card-subtitle mb-3 text-muted">{{ aprendiz.programa }}</h6>
                 <hr>
                 <ul class="list-group list-group-flush flex-grow-1">
                     <li class="list-group-item">
-                        <strong>Documento:</strong> {{ aprendiz.documento_identidad }}
+                        <strong>Documento:</strong>{{ aprendiz.documento_identidad }}
                     </li>
                     <li class="list-group-item">
                         <strong>Correo:</strong> <a href="mailto:{{ aprendiz.correo }}">{{ aprendiz.correo }}</a>

@@ -5,10 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{% block title %}Sena App-Aprendices{% endblock %}</title>
         {% load static %}
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <style>
     body {
         font-family: "Poppins", sans-serif;
@@ -124,45 +123,15 @@
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
-/*Estilos de cards*/
-    .card {
-        background-color: #6d400cff;
-        color: white;
-        border: none;
-        border-radius: 15px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        transition: transform 0.3s;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-    }
-
-    .card-title {
-        font-weight: bold;
-        font-size: 1.5rem;
-        color: white;
-    }
-
-    .card-text {
-        font-size: 1rem;
-        color: #f8f9fa;
-    }
-
-    .card-text strong {
-        color: white;
-    }
-
     .btn-success {
-        background-color: #f58220;
-        border: none;
-        font-weight: bold;
-        padding: 10px 25px;
-        transition: background-color 0.3s;
+        color: #fff;
+        background-color: #5c3e06ff;
+        border-color: #5c3e06ff;
     }
 
     .btn-success:hover {
-        background-color: #e0701a;
+        background-color: #b67520ff;
+        color: #fff;
     }
 /*Estilos lista_aprendices*/
     h2 {
@@ -247,6 +216,111 @@
         border-left: 5px solid #b77c44ff;
         color: #2e2509ff;
     }
+
+/*Estilo detalles_curso*/
+    .breadcrumb {
+        background-color: transparent; 
+        padding-left: 0;
+    }
+
+    .breadcrumb .back-link {
+        color: #da7a21ff; 
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .breadcrumb .back-link:hover {
+        text-decoration: underline;
+    }
+
+    .breadcrumb-item.active {
+        color: #796f6aff; 
+    }
+
+    .card-sena {
+        border: 1px solid #e4ab60ff; 
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); 
+        background-color: #e4ab60ff;
+    }
+
+    .card-sena .card-header {
+        background-color: #e67207ff; 
+        border-bottom: 1px solid #e0e0e0;
+        color: #090a0aff; 
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        padding: 1rem 1.25rem;
+    }
+
+    .card-sena .card-header h4,
+    .card-sena .card-header h5 {
+        margin-bottom: 0;   
+    }
+
+    .card-sena .card-header i {
+        font-size: 1.2rem;
+        margin-right: 0.75rem;
+        color: #200f03ff; 
+    }
+
+    .card-sena .card-body {
+        padding: 1.5rem;
+    }
+
+    .card-sena .card-footer {
+        background-color: #da7a21ff;
+        border-top: 1px solid #e0e0e0;
+        text-align: right; 
+        padding: 0.75rem 1.25rem;
+    }
+
+    .course-details-list,
+    .entity-list {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    .course-details-list li {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.6rem 0;
+        border-bottom: 1px solid #f0f0f0; 
+    }
+
+    .course-details-list li:last-child {
+        border-bottom: none;
+    }
+
+    .course-details-list li strong {
+        margin-right: 1rem;
+        color: #495057;
+    }
+
+    .entity-list li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.75rem;
+    }
+
+    .entity-list i {
+        margin-right: 0.75rem;
+        color: #28a745;
+    }
+
+    .btn-sena-outline {
+        border: 1px solid #8B4513; /* Borde marrón */
+        color: #fcf6f2ff; /* Texto marrón */
+        background-color: #8B4513;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+.btn-sena-outline:hover {
+    background-color: #e46912ff; /* Fondo marrón al pasar el ratón */
+    color: #ffffff; /* Texto blanco */
+}
     </style>
 </head>
     <body>

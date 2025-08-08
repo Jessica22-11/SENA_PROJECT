@@ -39,7 +39,7 @@ class AprendizAdmin(admin.ModelAdmin):
     nombre_completo.short_description = 'Nombre Completo'
 
 
-# Inlines para el admin de Cursos
+
 class InstructorCursoInline(admin.TabularInline):
     model = InstructorCurso
     extra = 1
@@ -53,7 +53,6 @@ class AprendizCursoInline(admin.TabularInline):
     readonly_fields = ['fecha_inscripcion']
 
 
-# Admin principal de Cursos
 @admin.register(Curso)
 class CursoAdmin(admin.ModelAdmin):
     list_display = [
@@ -117,7 +116,7 @@ class CursoAdmin(admin.ModelAdmin):
     cupos_info.short_description = 'Ocupación'
 
 
-# Admin para las relaciones
+
 @admin.register(InstructorCurso)
 class InstructorCursoAdmin(admin.ModelAdmin):
     list_display = ['instructor', 'curso', 'rol', 'fecha_asignacion']

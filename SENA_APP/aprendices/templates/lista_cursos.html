@@ -23,7 +23,7 @@
         <div class="card card-aprendiz h-100">
             <div class="card-body d-flex flex-column">
                 <h5 class="card-title">{{ curso.nombre }}</h5>
-                <h6 class="card-subtitle mb-3 text-muted">{{ curso.codigo }}</h6>
+                <h6 class="card-subtitle mb-3 text-muted"><strong><a href ="curso/{{ curso.id }}">{{ curso.codigo }}</a></strong></h6>
                 <h6 class="card-subtitle mb-3 text-muted">{{ curso.programa }}</h6>
                 <hr>
                 <ul class="list-group list-group-flush flex-grow-1">
@@ -46,7 +46,7 @@
                         <strong>Observaciones:</strong> {{ curso.observaciones }}
                     </li>
                 </ul>
-                <a href="{% url 'admin:aprendices_curso_change' programa.pk %}" 
+                <a href="{% url 'admin:aprendices_curso_change' curso.pk %}" 
                     class="btn btn-sm btn-custom-secondary mt-auto">
                     Editar Programa
                 </a>

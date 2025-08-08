@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalles de {{ programa.nombre }} - SENA APP{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/" class="back-link">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'programas:lista_programas' %}" class="back-link">Lista de Programas</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ programa.nombre }}</li>
+        </ol>
+    </nav>
+
+    <!-- Encabezado del Programa -->
+    <div class="program-header-card">
+        <h1>{{ programa.nombre }}</h1>
+        <div class="program-meta">
+            <div class="meta-item"><i class="bi bi-hash"></i> {{ programa.codigo }}</div>
+            <div class="meta-item"><i class="bi bi-award"></i> {{ programa.get_nivel_formacion_display }}</div>
+            <div class="meta-item"><i class="bi bi-laptop"></i> {{ programa.get_modalidad_display }}</div>
+        </div>
+    </div>
+    
+    <!-- Tarjetas de Información Rápida -->
+    <div class="info-card-container">
+        <div class="info-card">
+            <i class="bi bi-clock"></i>
+            <h5>{{ programa.duracion_meses }} meses</h5>
+            <p>{{ programa.duracion_horas }} horas</p>
+        </div>
+        <div class="info-card">
+            <i class="bi bi-building"></i>
+            <h5>Centro</h5>
+            <p>{{ programa.centro_formacion }}</p>
+        </div>
+        <div class="info-card">
+            <i class="bi bi-map"></i>
+            <h5>Regional</h5>
+            <p>{{ programa.regional|default:"No especificada" }}</p>
+        </div>
+    </div>
+
+    <!-- Detalles Descriptivos del Programa -->
+    <div class="details-section">
+        {% if programa.descripcion %}
+        <div class="detail-item">
+            <h4><i class="bi bi-file-text"></i> Descripción</h4>
+            <div class="detail-content">{{ programa.descripcion }}</div>
+        </div>
+        {% endif %}
+        
+        {% if programa.competencias %}
+        <div class="detail-item">
+            <h4><i class="bi bi-trophy"></i> Competencias a Desarrollar</h4>
+            <div class="detail-content">{{ programa.competencias }}</div>
+        </div>
+        {% endif %}
+
+        {% if programa.perfil_egreso %}
+        <div class="detail-item">
+            <h4><i class="bi bi-person-check"></i> Perfil de Egreso</h4>
+            <div class="detail-content">{{ programa.perfil_egreso }}</div>
+        </div>
+        {% endif %}
+
+        {% if programa.requisitos_ingreso %}
+        <div class="detail-item">
+            <h4><i class="bi bi-list-check"></i> Requisitos de Ingreso</h4>
+            <div class="detail-content">{{ programa.requisitos_ingreso }}</div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Cursos del Programa -->
+    <div class="courses-section">
+        <h3>Cursos Asociados ({{ cursos|length }})</h3>
+        {% if cursos %}
+            <div class="course-card-grid">
+                {% for curso in cursos %}
+                <div class="course-card">
+                    <div class="course-card-body">
+                        <h5 class="course-card-title">{{ curso.nombre }}</h5>
+                        <p class="text-muted small mt-1 mb-2">{{ curso.codigo }}</p>
+                        <p class="mb-0">{{ curso.descripcion|truncatewords:20 }}</p>
+                    </div>
+                    <div class="course-card-footer text-muted">
+                        <i class="bi bi-calendar3 me-1"></i>
+                        Inicio: 
+                        <strong>
+                        {% if curso.fecha_inicio %}
+                            {{ curso.fecha_inicio|date:"d M, Y" }}
+                        {% else %}
+                            Por definir
+                        {% endif %}
+                        </strong>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-courses">
+                <i class="bi bi-book"></i>
+                <p class="mt-2 text-muted">Actualmente no hay cursos registrados para este programa.</p>
+                <a href="#" class="btn btn-edit" style="background-color: var(--secondary-color); color: white;">Agregar Curso</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

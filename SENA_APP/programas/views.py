@@ -16,7 +16,7 @@ def programas(request):
 
 def detalle_programa(request, programa_id):
     programa = get_object_or_404(Programa, pk=programa_id)
-    cursos = programa.curso_set_all().order_by('-fecha_inicio')
+    cursos = programa.curso_set.all().order_by('-fecha_inicio')
     template = loader.get_template('detalle_programa.html')
     
     context = {

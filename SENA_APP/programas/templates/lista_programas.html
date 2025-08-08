@@ -22,8 +22,8 @@
     <div class="col-lg-4 col-md-6 mb-4">
         <div class="card card-aprendiz h-100">
             <div class="card-body d-flex flex-column">
-                <h5 class="card-title">{{ programa.nombre }}</h5>
-                <h6 class="card-subtitle mb-3 text-muted"><a href = "programa/{{ programa.id }}">{{ programa.codigo }}</a></h6>
+                <h5 class="card-title"><a href = "programa/{{ programa.id }}">{{ programa.nombre }}</a></h5>
+                <h6 class="card-subtitle mb-3 text-muted">{{ programa.codigo }}</h6>
                 <h6 class="card-subtitle mb-3 text-muted">{{ programa.nivel_formacion }}</h6>
                 <hr>
                 <ul class="list-group list-group-flush flex-grow-1">

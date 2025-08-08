@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+
+{% block title %}Detalles de {{ instructor.nombre_completo }} - SENA APP{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid py-4">
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/" class="back-link">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'instructores:lista_instructores' %}" class="back-link">Lista de Instructores</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ instructor.nombre_completo }}</li>
+        </ol>
+    </nav>
+
+    <!-- Tarjeta de Detalles del Instructor -->
+    <div class="details-card">
+        <div class="details-card-header">
+            <h2>Perfil del Instructor</h2>
+            <a href="#" class="btn btn-light">Editar Perfil</a>
+        </div>
+        <div class="details-card-body">
+            <!-- Sección del Avatar -->
+            <div class="profile-section">
+                <div class="profile-avatar">{{ instructor.nombre.0 }}{{ instructor.apellido.0 }}</div>
+                <h4>{{ instructor.nombre_completo }}</h4>
+                {% if instructor.activo %}
+                    <span class="status-badge active"><i class="bi bi-check-circle me-1"></i>Activo</span>
+                {% else %}
+                    <span class="status-badge inactive"><i class="bi bi-x-circle me-1"></i>Inactivo</span>
+                {% endif %}
+            </div>
+
+            <!-- Sección de Información Detallada -->
+            <div class="info-section">
+                <div class="info-group">
+                    <h5><i class="bi bi-person-badge"></i> Identificación</h5>
+                    <div class="info-item">
+                        <i class="bi bi-card-text"></i>
+                        <div>
+                            <strong>Documento</strong>
+                            <span>{{ instructor.get_tipo_documento_display }} - {{ instructor.documento_identidad }}</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-calendar-event"></i>
+                        <div>
+                            <strong>Nacimiento</strong>
+                            <span>{{ instructor.fecha_nacimiento|date:"d/m/Y" }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-group">
+                    <h5><i class="bi bi-geo-alt"></i> Contacto</h5>
+                    <div class="info-item">
+                        <i class="bi bi-envelope"></i>
+                        <div>
+                            <strong>Correo</strong>
+                            <a href="mailto:{{ instructor.correo }}">{{ instructor.correo }}</a>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-telephone"></i>
+                        <div>
+                            <strong>Teléfono</strong>
+                            <span>{{ instructor.telefono|default:"No registrado" }}</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-building"></i>
+                        <div>
+                            <strong>Ubicación</strong>
+                            <span>{{ instructor.ciudad|default:"No registrada" }}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-group">
+                    <h5><i class="bi bi-briefcase"></i> Profesional</h5>
+                    <div class="info-item">
+                        <i class="bi bi-mortarboard"></i>
+                        <div>
+                            <strong>Nivel Educativo</strong>
+                            <span>{{ instructor.get_nivel_educativo_display }}</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-star"></i>
+                        <div>
+                        <strong>Especialidad</strong><span>{{ instructor.especialidad|default:"No registrada" }}</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="bi bi-graph-up"></i>
+                        <div>
+                            <strong>Experiencia</strong>
+                            <span>{{ instructor.anos_experiencia }} años</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sección de Cursos -->
+    <div class="courses-section">
+        <div class="row">
+            <!-- Cursos Coordinados -->
+            <div class="col-lg-6 mb-4">
+                <h4>Cursos Coordinados</h4>
+                {% if cursos_coordinados %}
+                    {% for curso in cursos_coordinados %}
+                    <div class="course-card coordinated">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5>{{ curso.nombre }}</h5>
+                                <small class="text-muted">{{ curso.codigo }}</small>
+                            </div>
+                            <span class="badge badge-coordinated">Coordinador</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="no-courses">
+                        <i class="bi bi-kanban"></i>
+                        <p class="mt-2 text-muted">Este instructor no coordina ningún curso.</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Cursos Impartidos -->
+            <div class="col-lg-6 mb-4">
+                <h4>Cursos Impartidos</h4>
+                {% if cursos_impartidos %}
+                    {% for curso in cursos_impartidos %}
+                    <div class="course-card">
+                            <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h5>{{ curso.nombre }}</h5>
+                                <small class="text-muted">{{ curso.codigo }}</small>
+                            </div>
+                            <span class="badge badge-instructor">Instructor</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="no-courses">
+                        <i class="bi bi-book"></i>
+                        <p class="mt-2 text-muted">Este instructor no imparte ningún curso.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

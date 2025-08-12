@@ -1,0 +1,5 @@
+#Instalacion de dependencias para el proyecto SENA_APP
+Django==5.2.5
+ipython==9.4.0
+#Para ejecutar las dependencias
+#pip install -r requirements.txt

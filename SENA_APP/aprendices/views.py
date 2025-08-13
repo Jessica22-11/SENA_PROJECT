@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 
-from .models import Aprendiz, Curso, InstructorCurso, AprendizCurso
+from .models import Aprendiz, Curso
 from instructores.models import Instructor
 from programas.models import Programa
 from django.shortcuts import get_object_or_404
@@ -76,7 +76,7 @@ def detalle_aprendiz(request, aprendiz_id):
 class AprendizFormView(generic.FormView):
     template_name = "agregar_aprendiz.html"
     form_class = AprendizForm
-    success_url = '../aprendices/'
+    success_url = "../aprendices/"
     
     #Merodo para guaradar el formulario
     def form_valid(self, form):

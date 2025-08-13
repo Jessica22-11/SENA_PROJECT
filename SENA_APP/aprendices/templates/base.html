@@ -797,6 +797,58 @@
         font-size: 3rem;
         color: var(--text-muted-color);
     }
+    /* Estilos para Agregar Aprendiz */
+    :root {
+        --sena-orange: #d9853b; 
+        --sena-dark-brown: #61523a; 
+        --sena-dark-brown-hover: #50432f; 
+    }
+
+    .card-header-sena {
+        background-color: var(--sena-orange);
+        color: white;
+    }
+
+    .btn-primary-sena {
+        background-color: var(--sena-dark-brown);
+        border-color: var(--sena-dark-brown);
+        color: white;
+    }
+
+    .btn-primary-sena:hover {
+        background-color: var(--sena-dark-brown-hover);
+        border-color: var(--sena-dark-brown-hover);
+        color: white;
+    }
+
+    /* Ajuste para que los campos del formulario de Django tomen el estilo de Bootstrap */
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="date"],
+    form select,
+    form textarea {
+        display: block;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+    form input:focus, form select:focus {
+        border-color: #86b7fe;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem rgba(13,110,253,.25);
+    }
     </style>
 </head>
     <body>

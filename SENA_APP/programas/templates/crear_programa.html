@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Registrar Nuevo Programa - SENA APP{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10"> <!-- Un poco más ancho para tantos campos -->
+        <div class="card shadow">
+            <div class="card-header card-header-sena">
+                <h3 class="card-title mb-0">
+                    <i class="fas fa-book-reader"></i> Registrar Nuevo Programa de Formación
+                </h3>
+            </div>
+            <div class="card-body">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    <!-- Fila 1: Código y Nombre -->
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.codigo.id_for_label }}">{{ form.codigo.label }} <span class="text-danger">*</span></label>
+                            {{ form.codigo }}
+                            {{ form.codigo.errors }}
+                        </div>
+                        <div class="col-md-8 mb-3">
+                            <label for="{{ form.nombre.id_for_label }}">{{ form.nombre.label }} <span class="text-danger">*</span></label>
+                            {{ form.nombre }}
+                            {{ form.nombre.errors }}
+                        </div>
+                    </div>
+
+                    <!-- Fila 2: Nivel, Modalidad y Duración -->
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.nivel_formacion.id_for_label }}" class="form-label">{{ form.nivel_formacion.label }}</label>
+                            {{ form.nivel_formacion }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="{{ form.modalidad.id_for_label }}" class="form-label">{{ form.modalidad.label }}</label>
+                            {{ form.modalidad }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Duración del Programa</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text">Meses</span>
+                            {{ form.duracion_meses }}
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">Horas</span>
+                            {{ form.duracion_horas }}
+                        </div>
+                            {{ form.duracion_meses.errors }}
+                            {{ form.duracion_horas.errors }}
+                        </div>
+                </div>
+                    
+                    <hr>
+
+                    <!-- Fila 3: Descripciones y perfiles (TextAreas) -->
+                    <div class="mb-3">
+                        <label for="{{ form.descripcion.id_for_label }}">{{ form.descripcion.label }}</label>
+                        {{ form.descripcion }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.competencias.id_for_label }}">{{ form.competencias.label }}</label>
+                        {{ form.competencias }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.perfil_egresado.id_for_label }}">{{ form.perfil_egresado.label }}</label>
+                        {{ form.perfil_egresado }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.requisitos_ingreso.id_for_label }}">{{ form.requisitos_ingreso.label }}</label>
+                        {{ form.requisitos_ingreso }}
+                    </div>
+
+                    <hr>
+
+                    <!-- Fila 4: Ubicación y Estado -->
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.centro_formacion.id_for_label }}">{{ form.centro_formacion.label }} <span class="text-danger">*</span></label>
+                            {{ form.centro_formacion }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.regional.id_for_label }}">{{ form.regional.label }} <span class="text-danger">*</span></label>
+                            {{ form.regional }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.fecha_creacion.id_for_label }}">{{ form.fecha_creacion.label }} <span class="text-danger">*</span></label>
+                            {{ form.fecha_creacion }}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="{{ form.estado.id_for_label }}">{{ form.estado.label }}</label>
+                            {{ form.estado }}
+                        </div>
+                    </div>
+                    
+                    <!-- 
+                        IMPORTANTE: No se muestra 'fecha_registro'. 
+                        Si tu modelo usa auto_now=True o auto_now_add=True, la base de datos se encarga de este campo.
+                        No debe estar en el formulario.
+                    -->
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a href="#" class="btn btn-secondary me-md-2"> <!-- Cambia # a la URL de tu lista de programas -->
+                            <i class="fas fa-times"></i> Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-primary-sena">
+                            <i class="fas fa-save"></i> Guardar Programa
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

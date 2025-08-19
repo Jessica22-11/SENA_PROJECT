@@ -1,11 +1,6 @@
 from django.db import models
 
-# Create your models here.
-
-    
-
-        
-    
+# Create your models here.    
 class SolicitudAdmision(models.Model):
     TIPO_DOCUMENTO_ESTADO_CHOICES = [
         ('TI', 'Tarjeta de identidad'),

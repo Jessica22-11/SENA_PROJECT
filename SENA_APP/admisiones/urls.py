@@ -11,6 +11,5 @@ urlpatterns = [
     path('estado_aspirante/', views.estado_aspirante, name='estado_aspirante'),
     path('rechazar/<int:pk>/', views.rechazar_solicitud, name='rechazar_solicitud'),
     path('aprobar/<int:pk>/', views.aprobar_solicitud, name='aprobar_solicitud'),
-
 ]
 

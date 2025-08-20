@@ -55,7 +55,7 @@ def detalle_solicitud(request, pk):
             solicitud.save()
             messages.success(request, "Estado de la solicitud actualizado correctamente.")
             return redirect('admisiones:panel_coordinador') 
-    return render(request, 'admisiones/detalle_solicitud.html', {'solicitud': solicitud})
+    return render(request, 'detalle_solicitud.html', {'solicitud': solicitud})
 
 
 #Estado de inscripcion del aspirante
@@ -67,7 +67,7 @@ def estado_aspirante(request):
             solicitud = SolicitudAdmision.objects.get(numero_documento=numero_documento)
         except SolicitudAdmision.DoesNotExist:
             messages.error(request, "No se encontró ninguna solicitud con ese número de documento.")
-    return render(request, 'admisiones/estado_aspirante.html', {'solicitud': solicitud})
+    return render(request, 'estado_aspirante.html', {'solicitud': solicitud})
 
 # Aprobar solicitud
 def aprobar_solicitud(request, pk):

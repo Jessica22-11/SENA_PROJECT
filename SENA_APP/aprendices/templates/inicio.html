@@ -68,6 +68,17 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-4 mt-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Lista de Aspirantes</h5>
+                <p class="card-text">Consulta todos los Aspirantes registrados en el sistema.</p>
+                <p class="card-text"><strong>Total de Aspirantes:</strong> {{ total_solicitudes }}</p>
+                <a href="{% url 'admisiones:panel_coordinador' %}" class="btn btn-success">Ver Lista</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

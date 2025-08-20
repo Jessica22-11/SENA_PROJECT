@@ -30,7 +30,13 @@ class SolicitudAdmisionFormView(FormView):
 #Panel de revison de coordinador
 def panel_coordinador(request):
     solicitudes = SolicitudAdmision.objects.all().order_by('-fecha_solicitud')
-    return render (request, 'admisiones/panel_coordinador.html', {'solicitudes': solicitudes})
+    template = loader.get_template('panel_coordinador.html')
+    context = {
+        "total_solicitudes": solicitudes.count(),
+        "lista_solicitudes": solicitudes
+    }
+    return HttpResponse(template.render(context, request))
+
 
 #Detalle de la solicitud
 def detalle_solicitud(request,pk):

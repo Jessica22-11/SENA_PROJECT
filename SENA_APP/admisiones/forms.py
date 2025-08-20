@@ -56,4 +56,3 @@ class SolicitudAdminsionForm(forms.Form):
             return solicitud
         except Exception as e:
             raise forms.ValidationError(f"Error al guardar la solicitud: {str(e)}")
-        

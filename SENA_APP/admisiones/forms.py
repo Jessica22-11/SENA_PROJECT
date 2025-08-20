@@ -27,7 +27,7 @@ class SolicitudAdminsionForm(forms.Form):
         return cleaned_data
     
     def clean_numero_documento(self):
-        numero_documento = self.cleaned_data.get['numero_documento']
+        numero_documento = self.cleaned_data.get('numero_documento')
         if not numero_documento.isdigit():
             raise forms.ValidationError('El documento debe tener solo números.')
         return numero_documento
@@ -43,7 +43,7 @@ class SolicitudAdminsionForm(forms.Form):
             solicitud = SolicitudAdmision.objects.create(
                 nombre_completo=self.cleaned_data['nombre_completo'],
                 tipo_documento=self.cleaned_data['tipo_documento'],
-                numero_documento=self.cleaned_data['numero_documento'],
+                numero_documento=self.cleaned_data('numero_documento'),
                 correo=self.cleaned_data['correo'],
                 telefono=self.cleaned_data['telefono'],
                 programa=self.cleaned_data['programa'],

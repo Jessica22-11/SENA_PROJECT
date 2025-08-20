@@ -12,6 +12,7 @@ class SolicitudAdminsionForm(forms.Form):
     programa = forms.ModelChoiceField(queryset=Programa.objects.all(), label='Programa de Formación', help_text='Seleccione el programa de formación.')
     documento_identidad = forms.FileField(label='Documento de Identidad', help_text='Suba su documento de identidad.')
     certificado_academico = forms.FileField(label='Certificado Académico', help_text='Suba su certificado académico.')
+    certificado_eps = forms.FileField(label='Certificado eps', help_text='Suba su certificado de eps')
     estado = forms.ChoiceField(choices=SolicitudAdmision.ESTADO_CHOICES, initial='REV', label='Estado de la Solicitud', help_text='Estado actual de la solicitud se asigna por el sistema.')
     fecha_solicitud = forms.DateTimeField(label='Fecha de Solicitud', help_text='Fecha de la solicitud.')
     

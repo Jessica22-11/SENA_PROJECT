@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from .models import SolicitudAdmision
-from .forms import SolicitudAdminsionForm
+from django.urls import reverse_lazy
+from admisiones.forms import SolicitudAdminsionForm
+
 
 from django.views import generic
 from django.contrib import messages
@@ -11,18 +13,19 @@ from django.views.generic import FormView
 
 #Formulario con FormView para crear solicitud
 class SolicitudAdmisionFormView(FormView):
-    template_name = 'admisiones/formulario_inscripcion.html'
+    template_name = 'formulario_inscripcion.html'
     form_class = SolicitudAdminsionForm
-    success_url = "/admisimones/panel_coordinador/"
-    
+    success_url = reverse_lazy('admisiones')  
+
     def form_valid(self, form):
-        solicitud = form.save()
-        messages.success(self.request, f"Tu solicitud {solicitud.nombre} admisión creada exitosamente.")
+        form.save()  # guarda la solicitud en la base de datos
+        messages.success(self.request, "Tu solicitud fue enviada correctamente.")
         return super().form_valid(form)
-    
+
     def form_invalid(self, form):
-        messages.error(self.request, "Error al crear la solicitud de admisión. Por favor, revisa los datos ingresados.")
+        messages.error(self.request, "Hubo un error en el formulario. Verifica los datos.")
         return super().form_invalid(form)
+
 
 #Panel de revison de coordinador
 def panel_coordinador(request):

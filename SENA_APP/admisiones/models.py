@@ -22,7 +22,7 @@ class SolicitudAdmision(models.Model):
     telefono = models.IntegerField(max_length=10, unique=True)
     programa = models.ForeignKey('programas.Programa', on_delete=models.CASCADE, verbose_name="Programa de Formación")
     documento_identidad = models.FileField(upload_to='admisiones/documento_identidad/', null=True, blank=True)
-    cartificado_academmico = models.FileField(upload_to='admisiones/cartificado_academmico/', null=True, blank=True)
+    certificado_academmico = models.FileField(upload_to='admisiones/cartificado_academmico/', null=True, blank=True)
     certificado_eps = models.FileField(upload_to='admisiones/certificado_eps/', null=True, blank=True)
     estado = models.CharField(max_length=3, choices=ESTADO_CHOICES, default='ADM', verbose_name="Estado de la Solicitud")
     fecha_solicitud = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de Solicitud")

@@ -34,16 +34,17 @@ class SolicitudAdminsionForm(forms.Form):
     
     def clean_telefono(self):
         telefono = self.cleaned_data.get('telefono')
-        if telefono and not telefono.isdigit():
-            raise forms.ValidationError("El teléfono debe tener solo números.")
+        if telefono is not None and telefono <= 0:
+            raise forms.ValidationError("El teléfono debe ser un número positivo.")
         return telefono
+
     
     def save(self):
         try:
             solicitud = SolicitudAdmision.objects.create(
                 nombre_completo=self.cleaned_data['nombre_completo'],
                 tipo_documento=self.cleaned_data['tipo_documento'],
-                numero_documento=self.cleaned_data('numero_documento'),
+                numero_documento=self.cleaned_data['numero_documento'],
                 correo=self.cleaned_data['correo'],
                 telefono=self.cleaned_data['telefono'],
                 programa=self.cleaned_data['programa'],

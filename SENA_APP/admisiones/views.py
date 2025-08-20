@@ -55,7 +55,7 @@ def detalle_solicitud(request, pk):
             solicitud.save()
             messages.success(request, "Estado de la solicitud actualizado correctamente.")
             return redirect('admisiones:panel_coordinador') 
-    return render(request, 'admisiones/detalle_solicitud.html', {'solicitud': solicitud})
+    return render(request, 'detalle_solicitud.html', {'solicitud': solicitud})
 
 
 #Estado de inscripcion del aspirante

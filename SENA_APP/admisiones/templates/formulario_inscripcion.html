@@ -3,19 +3,19 @@
 {% block title %}Matrícula y Admisiones - SENA APP{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2>Formulario de Solicitud de Admisión</h2>
+<div class="form-container">
+    <h2 class="form-title">📋 Formulario de Solicitud de Admisión</h2>
 
     {% if messages %}
         {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            <div class="alert {{ message.tags }}">{{ message }}</div>
         {% endfor %}
     {% endif %}
 
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" class="admission-form">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
+        <button type="submit" class="btn-submit">Enviar Solicitud</button>
     </form>
 </div>
 {% endblock %}

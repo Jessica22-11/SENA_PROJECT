@@ -15,7 +15,8 @@ from django.views.generic import FormView
 class SolicitudAdmisionFormView(FormView):
     template_name = 'formulario_inscripcion.html'
     form_class = SolicitudAdminsionForm
-    success_url = reverse_lazy('admisiones')  
+    success_url = reverse_lazy('admisiones:formulario_inscripcion')
+
 
     def form_valid(self, form):
         form.save()  # guarda la solicitud en la base de datos
@@ -29,17 +30,22 @@ class SolicitudAdmisionFormView(FormView):
 
 #Panel de revison de coordinador
 def panel_coordinador(request):
+    estado = request.GET.get('estado')  # Leer filtro
     solicitudes = SolicitudAdmision.objects.all().order_by('-fecha_solicitud')
-    template = loader.get_template('panel_coordinador.html')
+
+    if estado:  # Si viene el parámetro, filtramos
+        solicitudes = solicitudes.filter(estado=estado)
+
     context = {
         "total_solicitudes": solicitudes.count(),
         "lista_solicitudes": solicitudes
     }
-    return HttpResponse(template.render(context, request))
+    return render(request, 'panel_coordinador.html', context)
+
 
 
 #Detalle de la solicitud
-def detalle_solicitud(request,pk):
+def detalle_solicitud(request, pk):
     solicitud = get_object_or_404(SolicitudAdmision, pk=pk)
     
     if request.method == 'POST':
@@ -48,16 +54,33 @@ def detalle_solicitud(request,pk):
             solicitud.estado = nuevo_estado
             solicitud.save()
             messages.success(request, "Estado de la solicitud actualizado correctamente.")
-            return redirect('admisiones:panel_coordinador')
-        return render(request, 'admisiones/detalle_solicitud.html', {'solicitud': solicitud})
-    
+            return redirect('admisiones:panel_coordinador') 
+    return render(request, 'admisiones/detalle_solicitud.html', {'solicitud': solicitud})
+
+
 #Estado de inscripcion del aspirante
 def estado_aspirante(request):
     numero_documento = request.GET.get('numero_documento', None)
-    solicitu = None
+    solicitud = None
     if numero_documento:
         try:
             solicitud = SolicitudAdmision.objects.get(numero_documento=numero_documento)
         except SolicitudAdmision.DoesNotExist:
             messages.error(request, "No se encontró ninguna solicitud con ese número de documento.")
-    return render(request, 'admsiones/estado_aspirante.html', {'solicitud': solicitud})
+    return render(request, 'admisiones/estado_aspirante.html', {'solicitud': solicitud})
+
+# Aprobar solicitud
+def aprobar_solicitud(request, pk):
+    solicitud = get_object_or_404(SolicitudAdmision, pk=pk)
+    solicitud.estado = "ADM"  # Admitido
+    solicitud.save()
+    messages.success(request, f"La solicitud de {solicitud.nombre_completo} fue APROBADA.")
+    return redirect('admisiones:panel_coordinador')
+
+# Rechazar solicitud
+def rechazar_solicitud(request, pk):
+    solicitud = get_object_or_404(SolicitudAdmision, pk=pk)
+    solicitud.estado = "REV"  # o si quieres otro estado como RECH (debes agregarlo al modelo)
+    solicitud.save()
+    messages.error(request, f"La solicitud de {solicitud.nombre_completo} fue RECHAZADA.")
+    return redirect('admisiones:panel_coordinador')

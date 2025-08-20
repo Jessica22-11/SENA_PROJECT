@@ -8,14 +8,17 @@
             <h2 class="text-center mb-4">Consulta de Estado de Admisión</h2>
             <hr>
 
+            <!-- Formulario de búsqueda -->
             <form action="{% url 'admisiones:estado_aspirante' %}" method="get" class="mb-4">
+                <label for="numero_documento" class="form-label">Ingrese su número de documento</label>
                 <div class="input-group">
-                    <label for="numero_documento" class="form-label">Ingrese su número de documento</label>
-                    <input type="text" id="numero_documento" name="numero_documento" class="form-control" placeholder="Número de documento" required>
-                    <button type="submit" class="btn btn-warning mt-2">Consultar</button>
+                    <input type="text" id="numero_documento" name="numero_documento" 
+                        class="form-control" placeholder="Número de documento" required>
+                    <button type="submit" class="btn btn-consultar">Consultar</button>
                 </div>
             </form>
 
+            <!-- Mensajes -->
             {% if messages %}
                 <div class="alert alert-info">
                     {% for message in messages %}
@@ -24,37 +27,46 @@
                 </div>
             {% endif %}
 
+            <!-- Resultado de consulta -->
             {% if solicitud %}
-                <div class="card p-4 shadow-sm">
-                    <h5 class="card-title">Estado actual: <span class="fw-bold">{{ solicitud.get_estado_display|upper }}</span></h5>
-                    <p class="card-text">
-                        <strong>Fecha de solicitud:</strong> {{ solicitud.fecha_solicitud|date:"d/m/Y" }}
-                    </p>
-                    <hr>
-                    <h6 class="card-subtitle mb-2 text-muted">Documentos:</h6>
-                    <ul class="list-unstyled">
-                        <li>- Documento de Identidad
-                            {% if solicitud.documento_identidad %}
-                                <span class="text-success">(OK)</span>
-                            {% else %}
-                                <span class="text-danger">(Falta)</span>
-                            {% endif %}
-                        </li>
-                        <li>- Certificado Académico
-                            {% if solicitud.certificado_academico %}
-                                <span class="text-success">(OK)</span>
-                            {% else %}
-                                <span class="text-danger">(Falta)</span>
-                            {% endif %}
-                        </li>
-                        <li>- Certificado EPS
-                            {% if solicitud.certificado_eps %}
-                                <span class="text-success">(OK)</span>
-                            {% else %}
-                                <span class="text-danger">(Falta)</span>
-                            {% endif %}
-                        </li>
-                    </ul>
+                <div class="card shadow-sm border-0">
+                    <div class="card-header card-header-estado">
+                        Estado actual: {{ solicitud.get_estado_display|upper }}
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-2">
+                            <i class="bi bi-calendar-event"></i> 
+                            <strong>Fecha de solicitud:</strong> {{ solicitud.fecha_solicitud|date:"d/m/Y" }}
+                        </p>
+                        <hr>
+                        <h6 class="text-muted mb-3"><i class="bi bi-folder-check"></i> Documentos</h6>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Documento de Identidad
+                                {% if solicitud.documento_identidad %}
+                                    <span class="badge badge-ok">OK</span>
+                                {% else %}
+                                    <span class="badge badge-falta">Falta</span>
+                                {% endif %}
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Certificado Académico
+                                {% if solicitud.certificado_academico %}
+                                    <span class="badge badge-ok">OK</span>
+                                {% else %}
+                                    <span class="badge badge-falta">Falta</span>
+                                {% endif %}
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Certificado EPS
+                                {% if solicitud.certificado_eps %}
+                                    <span class="badge badge-ok">OK</span>
+                                {% else %}
+                                    <span class="badge badge-falta">Falta</span>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             {% endif %}
         </div>

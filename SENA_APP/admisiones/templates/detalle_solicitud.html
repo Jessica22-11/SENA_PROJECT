@@ -13,33 +13,39 @@
         </ol>
     </nav>
 
+    <!-- Tarjeta Detalle -->
     <div class="details-card">
-        <div class="details-card-header">
-            <h2>Detalle de Solicitud</h2>
+        <div class="details-card-header text-white p-2" style="background-color:#f39c12;">
+            <h2><i class="bi bi-file-earmark-text"></i> Detalle de Solicitud</h2>
         </div>
 
-        <div class="details-card-body d-flex justify-content-between">
-            <!-- Sección izquierda: información personal -->
-            <div class="info-section">
+        <div class="details-card-body d-flex justify-content-between p-4">
+            <!-- Sección izquierda -->
+            <div class="info-section text-center">
+                <!-- Avatar con inicial -->
+                <div class="details-card-body">
+            <div class="profile-section">
                 <div class="profile-avatar">
-                    {{ solicitud.nombre_completo|slice:":1" }}
+                    {{ solicitud.nombre_completo.0 }}
                 </div>
-                <h4>{{ solicitud.nombre_completo }}</h4>
+                <h4>{{ solicitud.nombre_completo}}</h4>
+            </div>
 
-                <div class="info-group">
-                    <h5>Información Personal</h5>
-                    <p><strong>Documento:</strong> {{ solicitud.numero_documento }}</p>
-                    <p><strong>Correo:</strong> {{ solicitud.correo }}</p>
-                    <p><strong>Teléfono:</strong> {{ solicitud.telefono }}</p>
-                    <p><strong>Programa:</strong> {{ solicitud.programa }}</p>
+                <!-- Información personal -->
+                <div class="info-group text-start">
+                    <h5><i class="bi bi-info-circle"></i> Información Personal</h5>
+                    <p><i class="bi bi-card-text"></i> <strong>Documento:</strong> {{ solicitud.numero_documento }}</p>
+                    <p><i class="bi bi-envelope"></i> <strong>Correo:</strong> {{ solicitud.correo }}</p>
+                    <p><i class="bi bi-telephone"></i> <strong>Teléfono:</strong> {{ solicitud.telefono }}</p>
+                    <p><i class="bi bi-journal-text"></i> <strong>Programa:</strong> {{ solicitud.programa }}</p>
                 </div>
             </div>
 
-            <!-- Sección derecha: documentos -->
-            <div class="documents-section">
-                <h5>Documentos</h5>
+            <!-- Sección derecha -->
+            <div class="info-group">
+                <h5><i class="bi bi-folder"></i> Documentos</h5>
                 <p>
-                    Documento Identidad: 
+                    <i class="bi bi-file-earmark-text"></i> Documento Identidad: 
                     {% if solicitud.documento_identidad %}
                         <a href="{{ solicitud.documento_identidad.url }}" target="_blank">Ver Documento</a>
                     {% else %}
@@ -47,7 +53,7 @@
                     {% endif %}
                 </p>
                 <p>
-                    Certificado Académico: 
+                    <i class="bi bi-file-earmark-text"></i> Certificado Académico: 
                     {% if solicitud.certificado_academico %}
                         <a href="{{ solicitud.certificado_academico.url }}" target="_blank">Ver Certificado</a>
                     {% else %}
@@ -55,7 +61,7 @@
                     {% endif %}
                 </p>
                 <p>
-                    Certificado EPS: 
+                    <i class="bi bi-file-earmark-medical"></i> Certificado EPS: 
                     {% if solicitud.certificado_eps %}
                         <a href="{{ solicitud.certificado_eps.url }}" target="_blank">Ver Certificado</a>
                     {% else %}
@@ -66,17 +72,15 @@
                 <!-- Estado -->
                 <form method="POST">
                     {% csrf_token %}
-                    <div class="form-group">
-                        <label for="estado">Estado</label>
+                    <div class="form-group mb-2">
+                        <label for="estado"><i class="bi bi-flag"></i> Estado</label>
                         <select name="estado" class="form-control">
                             {% for key, value in solicitud.ESTADO_CHOICES %}
                                 <option value="{{ key }}" {% if solicitud.estado == key %}selected{% endif %}>{{ value }}</option>
                             {% endfor %}
                         </select>
                     </div>
-                    <div class="mt-2 d-flex gap-2">
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                    </div>
+                    <button type="submit" class="btn btn-sm btn-custom-secondary mt-auto"><i class="bi bi-save"></i> Guardar Cambios</button>
                 </form>
             </div>
         </div>

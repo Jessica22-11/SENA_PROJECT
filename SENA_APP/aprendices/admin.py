@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Aprendiz,Curso,AprendizCurso,InstructorCurso
-from admin import SolicitudAdmision
+from admisiones.models import SolicitudAdmision
 
 @admin.register(Aprendiz)
 class AprendizAdmin(admin.ModelAdmin):
@@ -149,7 +149,7 @@ class AprendizCursoAdmin(admin.ModelAdmin):
     ]
     list_editable = ['estado', 'nota_final']
     
-@admin.register(SolicitudAdmision)
+
 class SolicitudAdmisionAdmin(admin.ModelAdmin):
     list_display = [
         'nombre_completo', 

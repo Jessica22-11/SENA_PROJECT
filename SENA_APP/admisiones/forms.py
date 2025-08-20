@@ -13,7 +13,6 @@ class SolicitudAdminsionForm(forms.Form):
     documento_identidad = forms.FileField(label='Documento de Identidad', help_text='Suba su documento de identidad.')
     certificado_academico = forms.FileField(label='Certificado Académico', help_text='Suba su certificado académico.')
     certificado_eps = forms.FileField(label='Certificado eps', help_text='Suba su certificado de eps')
-    estado = forms.ChoiceField(choices=SolicitudAdmision.ESTADO_CHOICES, initial='REV', label='Estado de la Solicitud', help_text='Estado actual de la solicitud se asigna por el sistema.')
     fecha_solicitud = forms.DateTimeField(label='Fecha de Solicitud', help_text='Fecha de la solicitud.')
     
     def clean(self):
@@ -51,7 +50,6 @@ class SolicitudAdminsionForm(forms.Form):
                 documento_identidad=self.cleaned_data['documento_identidad'],
                 certificado_academico=self.cleaned_data['certificado_academico'],
                 certificado_eps=self.cleaned_data['certificado_eps'],
-                estado=self.cleaned_data.get('estado', 'REV'),
                 fecha_solicitud=self.cleaned_data.get('fecha_solicitud', None)
             )
             return solicitud

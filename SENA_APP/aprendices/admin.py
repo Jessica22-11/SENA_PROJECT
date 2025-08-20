@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Aprendiz,Curso,AprendizCurso,InstructorCurso
+from admin import SolicitudAdmision
 
 @admin.register(Aprendiz)
 class AprendizAdmin(admin.ModelAdmin):
@@ -147,3 +148,42 @@ class AprendizCursoAdmin(admin.ModelAdmin):
         'curso__codigo'
     ]
     list_editable = ['estado', 'nota_final']
+    
+@admin.register(SolicitudAdmision)
+class SolicitudAdmisionAdmin(admin.ModelAdmin):
+    list_display = [
+        'nombre_completo', 
+        'documento_identidad',
+        'programa',
+        'fecha_solicitud',   
+    ]
+    search_fields = [
+        'nombre_completo', 
+        'documento_identidad', 
+        'programa'
+    ]
+    list_filter = [
+        'programa', 
+        'fecha_solicitud'
+    ]
+    ordering = [
+        '-fecha_solicitud',
+    ]
+    
+    fieldsets = (
+        ('Información de la Solicitud', {
+            'fields': (
+                'documento_identidad',
+                'nombre_completo',
+                'tipo_documento'
+            )
+        }),
+        ('Información de Contacto', {
+            'fields': ('correo', 'telefono')
+        }),
+    )
+    
+    def nombre_completo(self, obj):
+        return obj.nombre_completo()
+    nombre_completo.short_description = 'Nombre Completo'
+    

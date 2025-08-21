@@ -69,18 +69,4 @@ def estado_aspirante(request):
             messages.error(request, "No se encontró ninguna solicitud con ese número de documento.")
     return render(request, 'estado_aspirante.html', {'solicitud': solicitud})
 
-# Aprobar solicitud
-def aprobar_solicitud(request, pk):
-    solicitud = get_object_or_404(SolicitudAdmision, pk=pk)
-    solicitud.estado = "ADM"  # Admitido
-    solicitud.save()
-    messages.success(request, f"La solicitud de {solicitud.nombre_completo} fue APROBADA.")
-    return redirect('admisiones:panel_coordinador')
 
-# Rechazar solicitud
-def rechazar_solicitud(request, pk):
-    solicitud = get_object_or_404(SolicitudAdmision, pk=pk)
-    solicitud.estado = "REV"  # o si quieres otro estado como RECH (debes agregarlo al modelo)
-    solicitud.save()
-    messages.error(request, f"La solicitud de {solicitud.nombre_completo} fue RECHAZADA.")
-    return redirect('admisiones:panel_coordinador')

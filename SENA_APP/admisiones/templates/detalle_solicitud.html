@@ -4,7 +4,6 @@
 
 {% block content %}
 <div class="container-fluid py-4">
-    <!-- Breadcrumb -->
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/" class="back-link">Inicio</a></li>
@@ -12,17 +11,12 @@
             <li class="breadcrumb-item active" aria-current="page">{{ solicitud.nombre_completo }}</li>
         </ol>
     </nav>
-
-    <!-- Tarjeta Detalle -->
     <div class="details-card">
         <div class="details-card-header text-white p-2" style="background-color:#f39c12;">
             <h2><i class="bi bi-file-earmark-text"></i> Detalle de Solicitud</h2>
         </div>
-
         <div class="details-card-body d-flex justify-content-between p-4">
-            <!-- Sección izquierda -->
             <div class="info-section text-center">
-                <!-- Avatar con inicial -->
                 <div class="details-card-body">
             <div class="profile-section">
                 <div class="profile-avatar">
@@ -30,8 +24,6 @@
                 </div>
                 <h4>{{ solicitud.nombre_completo}}</h4>
             </div>
-
-                <!-- Información personal -->
                 <div class="info-group text-start">
                     <h5><i class="bi bi-info-circle"></i> Información Personal</h5>
                     <p><i class="bi bi-card-text"></i> <strong>Documento:</strong> {{ solicitud.numero_documento }}</p>
@@ -40,8 +32,6 @@
                     <p><i class="bi bi-journal-text"></i> <strong>Programa:</strong> {{ solicitud.programa }}</p>
                 </div>
             </div>
-
-            <!-- Sección derecha -->
             <div class="info-group">
                 <h5><i class="bi bi-folder"></i> Documentos</h5>
                 <p>
@@ -68,8 +58,6 @@
                         <span class="text-muted">No adjuntado</span>
                     {% endif %}
                 </p>
-
-                <!-- Estado -->
                 <form method="POST">
                     {% csrf_token %}
                     <div class="form-group mb-2">
